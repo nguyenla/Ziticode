@@ -1,0 +1,60 @@
+#include <iostream>
+#include <string>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+void find_optimal(const int cans[], int size) {
+    int sum = 0;
+    for (int i = 0; i < size; ++i) {
+        sum += cans[i];
+    }
+    // dp[i][j] stores whether the first i numbers can form a subset
+    // that sums up to j
+    bool dp[size + 1][sum + 1];
+
+    // Initialize dp[i][0] to be all 1s
+    for (int i = 0; i < size + 1; ++i) {
+        dp[i][0] = true;
+    }
+    
+    // Initialize dp[0][j] to be all 0s
+    for (int j = 1; j < sum + 1; ++j) {
+        dp[0][j] = false;
+    }
+
+    for (int i = 1; i < size + 1; ++i) {
+        for (int j = 1; j < sum + 1; ++j) {
+            // if the first i-1 elements are enough
+            dp[i][j] = dp[i-1][j];             
+
+            // if the i-th element is used
+            if (cans[i-1] <= j) {
+                dp[i][j] = dp[i][j] || dp[i-1][j - cans[i-1]];
+            }
+        }
+    }
+
+    int small = 0, big = 0;
+    for (int i = sum / 2; i >= 0; --i) {
+        if (dp[size][i]) {
+            cout << (sum - i) << " " << i << '\n';
+            break;
+        }
+    }
+}
+
+int main() {
+    int n;
+    cin >> n;
+    while (n != 0) {
+        int cans[n];
+        for (int i = 0; i < n; ++i) {
+            cin >> cans[i];
+        }
+        find_optimal(cans, n);
+        cin >> n;
+    }
+    return 0;
+}
