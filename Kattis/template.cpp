@@ -7,9 +7,10 @@
 using namespace std;
 
 // Helper function to display vector
-void print(const vector<int>& input) {
-    for (const int num : input) {
-        cout << num << " ";
+template <class T>
+void print(const vector<T>& input) {
+    for (const T& elem : input) {
+        cout << elem << " ";
     }
     cout << "\n";
 }
