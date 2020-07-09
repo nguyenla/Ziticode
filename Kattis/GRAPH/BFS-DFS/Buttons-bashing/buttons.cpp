@@ -16,8 +16,6 @@ void print(const vector<T>& input) {
 }
 
 void solve(const vector<int>& buttons, const int time) {
-    // cout << "Find time: " << time << endl;
-    // print(buttons);
     if (time == 0) {
         cout << "0 0\n";
         return;
@@ -43,7 +41,6 @@ void solve(const vector<int>& buttons, const int time) {
                 }
             }
         }
-        // cout << "------------ End of count: " << count << endl;
         ++count;
     }
 
