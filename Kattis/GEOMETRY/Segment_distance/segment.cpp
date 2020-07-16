@@ -47,7 +47,6 @@ double distance(const Point& p1, const Point& p2) {
 }
 
 
-
 int main() {
     int num_cases, x1, y1, x2, y2, x3, y3, x4, y4;
     cin >> num_cases;
